@@ -1,3 +1,12 @@
+# React frontend for ArtSpatter
+
+This is the website with JWT authentication.
+
+For this to work, it must connect to the ArtSpatter
+Server API (See ../server.js).
+
+This code is based on the create-react-app service-worker template.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
