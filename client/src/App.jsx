@@ -14,11 +14,6 @@ import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
 import BoardAdmin from "./components/board-admin.component";
 
-class App extends Component {
-  render() {
-    // ...
-  }
-}
 
 class App extends Component {
   constructor(props) {
@@ -55,7 +50,7 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className="navbar-brand">
-            bezKoder
+            ArtSpatter
           </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
@@ -137,4 +132,4 @@ class App extends Component {
 
 export default App;
 
-// (BezKoder, 2019)
+// (BezKoder, 2019b)
