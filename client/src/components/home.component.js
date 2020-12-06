@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import UserService from "../services/user.service";
+const reporting = require("../reporting");
 
 export default class Home extends Component {
   constructor(props) {
@@ -20,10 +21,7 @@ export default class Home extends Component {
       },
       error => {
         this.setState({
-          content:
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString()
+          content: reporting.errorLeaf(error),
         });
       }
     );

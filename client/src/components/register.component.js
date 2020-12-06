@@ -5,6 +5,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import AuthService from "../services/auth.service";
+const reporting = require("../reporting");
 
 const required = value => {
   if (!value) {
@@ -99,48 +100,14 @@ export default class Register extends Component {
       ).then(
         response => {
           this.setState({
-            message: response.data.message,
+            message: reporting.responseLeaf(response),
             successful: true,
           });
         },
         error => {
-          var msgMsg = "";
-          if (error.response) {
-            msgMsg += "error.response";
-            if (error.response.data) {
-              msgMsg += ".data";
-              if (error.response.data.message) {
-                msgMsg += ".message";
-              }
-            }
-          }
-          else if (error.message) {
-            msgMsg = "error.message";
-          }
-          else {
-            msgMsg = "error.toString()";
-          }
-          var resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          if ((typeof resMessage) != "string") {
-            if (resMessage.message) {
-              // Sometimes error.response.data.message is an error, and returning it
-              // to the react component as an object instead of a list or string
-              // will crash the React app. Recorded as issue #23 on Jake Gustafson
-              // GitHub repo
-              resMessage = resMessage.message
-            }
-            else {
-              resMessage = "Improperly formatted" + msgMsg + ": ." + Object.keys(msgMsg).join(" .");
-            }
-          }
           this.setState({
             successful: false,
-            message: resMessage,
+            message: reporting.errorLeaf(error),
           });
         }
       );

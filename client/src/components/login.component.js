@@ -4,6 +4,8 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
+const reporting = require("../reporting");
+
 
 const required = value => {
   if (!value) {
@@ -59,16 +61,9 @@ export default class Login extends Component {
           window.location.reload();
         },
         error => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-
           this.setState({
             loading: false,
-            message: resMessage
+            message: reporting.errorLeaf(error),
           });
         }
       );
