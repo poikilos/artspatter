@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+const API_URL = process.env.API_URL || "http://localhost:5000/api/auth/";
 
 exports.errorLeaf = (error) => {
   // Sometimes error.response.data.message is an error, and returning it
@@ -37,6 +40,10 @@ exports.errorLeaf = (error) => {
       const errMsg = "Improperly formatted " + (resMessage.name || "Object") + " " + msgMsg;
       resMessage = errMsg + " (It should be a string but has keys): ." + Object.keys(msgMsg).join(" .");
     }
+  }
+  else if (resMessage.includes("Network Error") ||
+           resMessage.includes("404")) {
+    resMessage = API_URL + " " + resMessage;
   }
   return resMessage;
 }
