@@ -104,16 +104,43 @@ export default class Register extends Component {
           });
         },
         error => {
-          const resMessage =
+          var msgMsg = "";
+          if (error.response) {
+            msgMsg += "error.response";
+            if (error.response.data) {
+              msgMsg += ".data";
+              if (error.response.data.message) {
+                msgMsg += ".message";
+              }
+            }
+          }
+          else if (error.message) {
+            msgMsg = "error.message";
+          }
+          else {
+            msgMsg = "error.toString()";
+          }
+          var resMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
-
+          if ((typeof resMessage) != "string") {
+            if (resMessage.message) {
+              // Sometimes error.response.data.message is an error, and returning it
+              // to the react component as an object instead of a list or string
+              // will crash the React app. Recorded as issue #23 on Jake Gustafson
+              // GitHub repo
+              resMessage = resMessage.message
+            }
+            else {
+              resMessage = "Improperly formatted" + msgMsg + ": ." + Object.keys(msgMsg).join(" .");
+            }
+          }
           this.setState({
             successful: false,
-            message: resMessage
+            message: resMessage,
           });
         }
       );
@@ -181,17 +208,61 @@ export default class Register extends Component {
             )}
 
             {this.state.message && (
-              <div className="form-group">
-                <div
+              <div
+                className={
+                  this.state.successful
+                  ? "text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"
+                  : "text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
+                }
+                >
+                { this.state.successful
+                  ?
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <i className="fas fa-check" />
+                  </span>
+                  :
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <i className="fas fa-bell" />
+                  </span>
+                }
+                <span
                   className={
                     this.state.successful
                       ? "alert alert-success"
                       : "alert alert-danger"
                   }
-                  role="alert"
                 >
                   {this.state.message}
-                </div>
+                </span>
+              </div>
+            )}
+            {this.state.debug && (
+              <div
+                className={
+                  this.state.successful
+                  ? "text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"
+                  : "text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
+                }
+                >
+                { this.state.successful
+                  ?
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <i className="fas fa-check" />
+                  </span>
+                  :
+                  <span className="text-xl inline-block mr-5 align-middle">
+                    <i className="fas fa-bell" />
+                  </span>
+                }
+                <span
+                  className={
+                    this.state.successful
+                      ? "alert alert-success"
+                      : "alert alert-danger"
+                  }
+                >
+                  {this.state.debug}
+                </span>
               </div>
             )}
             <CheckButton
