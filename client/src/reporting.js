@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const API_URL = process.env.API_URL || "http://localhost:5000/api/auth/";
+const API_URL = process.env.API_URL || "http://localhost:5000/api";
 
 exports.errorLeaf = (error) => {
   // Sometimes error.response.data.message is an error, and returning it
@@ -43,7 +43,7 @@ exports.errorLeaf = (error) => {
   }
   else if (resMessage.includes("Network Error") ||
            resMessage.includes("404")) {
-    resMessage = API_URL + " " + resMessage;
+    resMessage = API_URL + "* " + resMessage;
   }
   return resMessage;
 }

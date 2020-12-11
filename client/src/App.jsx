@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './tailwind.output.css';
 import './App.css';
@@ -11,10 +11,10 @@ import Register from "./components/register.component";
 import Upload from "./components/upload.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
-
+// import BoardUser from "./components/board-user.component";
+// import BoardModerator from "./components/board-moderator.component";
+// import BoardAdmin from "./components/board-admin.component";
+import Nav from './components/nav.component';
 
 class App extends Component {
   constructor(props) {
@@ -46,20 +46,47 @@ class App extends Component {
 
   render() {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
-
+    // Regarding className for components, see
+    // https://codesandbox.io/s/mq48rlj0pp?file=/src/index.js:329-350
+    // formerly used https://tailwindcomponents.com/component/dark-navigation-component
     return (
-      <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <Link to={"/"} className="navbar-brand">
-            ArtSpatter
-          </Link>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/home"} className="nav-link">
-                Home
-              </Link>
-            </li>
+      <div className="mt-0 w-full flex flex-row flex-wrap">
+        <Nav />
+        <div className="w-full bg-indigo-100 h-full sm:p-0 md:p-10 xl:p-24">
+          <div className="sm:w-full md:w-1/2 lg:w-1/2">
+            <div className="bg-white shadow rounded-lg border">
+              <Switch>
+                <Route exact path={["/", "/home"]} component={Home} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/upload" component={Upload} />
+              </Switch>
+            </div>
+          </div>
+        </div>
+      </div>
+);
+  }
+}
 
+// TODO: (future) my gallery:
+// nav:
+/*
+{currentUser && (
+  <li className="nav-item">
+    <Link to={"/user"} className="nav-link">
+      My Gallery
+    </Link>
+  </li>
+)}
+*/
+// article:
+//             <Route path="/user" component={BoardUser} />
+
+// TODO: (future) moderation (show hidden, only unhide ones my role hid):
+// nav:
+/*
             {showModeratorBoard && (
               <li className="nav-item">
                 <Link to={"/mod"} className="nav-link">
@@ -67,7 +94,13 @@ class App extends Component {
                 </Link>
               </li>
             )}
+*/
+// article:
+//             <Route path="/mod" component={BoardModerator} />
 
+// TODO: (future) administration (federate, etc):
+// nav:
+/*
             {showAdminBoard && (
               <li className="nav-item">
                 <Link to={"/admin"} className="nav-link">
@@ -75,66 +108,9 @@ class App extends Component {
                 </Link>
               </li>
             )}
-
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
-                </Link>
-              </li>
-            )}
-          </div>
-
-          {currentUser ? (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/profile"} className="nav-link">
-                  {currentUser.username}
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="/upload" className="nav-link" onClick={this.logOut}>
-                  Upload
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={this.logOut}>
-                  LogOut
-                </a>
-              </li>
-            </div>
-          ) : (
-            <div className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to={"/register"} className="nav-link">
-                  Sign Up
-                </Link>
-              </li>
-            </div>
-          )}
-        </nav>
-
-        <div className="container mt-3">
-          <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route path="/user" component={BoardUser} />
-            <Route path="/mod" component={BoardModerator} />
-            <Route path="/admin" component={BoardAdmin} />
-          </Switch>
-        </div>
-      </div>
-    );
-  }
-}
+*/
+// article:
+//            <Route path="/admin" component={BoardAdmin} />
 
 export default App;
 

@@ -1,11 +1,11 @@
 import axios from "axios";
 require('dotenv').config();
 
-const API_URL = process.env.API_URL || "http://localhost:5000/api/auth/";
+const API_URL = process.env.API_URL || "http://localhost:5000/api";
 
 class UploadService {
   upload(title, description, image) {
-    return axios.post(API_URL + "upload", {
+    return axios.post(API_URL + "/post/upload", {
       title,
       description,
       image,
