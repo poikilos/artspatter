@@ -5,7 +5,10 @@ export default function authHeader() {
     // for other backend:
     // return { Authorization: 'Bearer ' + user.accessToken };
     // for Node.js Express back-end
-    return { 'x-access-token': user.accessToken };
+    return {
+      'x-access-token': user.accessToken,
+      'content-type': 'multipart/form-data',
+    };
   } else {
     return {};
   }

@@ -16,7 +16,7 @@ const required = value => {
   }
 };
 
-const vtitle = value => {
+const vtitle = (value) => {
   if (value.length < 2 || value.length > 100) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -26,7 +26,7 @@ const vtitle = value => {
   }
 };
 
-const description = value => {
+const vdescription = (value) => {
   if (value.length < 10 || value.length > 300) {
     return (
       <div className="alert alert-danger" role="alert">
@@ -42,6 +42,8 @@ export default class Upload extends Component {
     this.handleUpload = this.handleUpload.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeImage = this.onChangeImage.bind(this);
+    // this.onFormSubmit = this.onFormSubmit.bind(this);
 
     this.state = {
       title: "",
@@ -54,7 +56,7 @@ export default class Upload extends Component {
 
   onChangeTitle(e) {
     this.setState({
-      username: e.target.value,
+      title: e.target.value,
     });
   }
 
@@ -64,9 +66,14 @@ export default class Upload extends Component {
     });
   }
 
+  onChangeImage(e) {
+    this.setState({
+      file: e.target.value,
+    });
+  }
+
   handleUpload(e) {
     e.preventDefault();
-
     this.setState({
       message: "",
       successful: false,
@@ -75,10 +82,13 @@ export default class Upload extends Component {
     this.form.validateAll();
 
     if (this.checkBtn.context._errors.length === 0) {
+      const formData = new FormData();
+      formData.append('title', this.state.title);
+      formData.append('description', this.state.title);
+      formData.append('file', this.state.file);
+      
       UploadService.upload(
-        this.state.title,
-        this.state.description,
-        this.state.file,
+        formData,
       ).then(
         response => {
           this.setState({
@@ -134,7 +144,7 @@ export default class Upload extends Component {
                       name="description"
                       value={this.state.description}
                       onChange={this.onChangeDescription}
-                      validations={[required, description]}
+                      validations={[required, vdescription]}
                     />
                   </div>
 
@@ -146,7 +156,7 @@ export default class Upload extends Component {
                       name="file"
                       enctype="multipart/form-data"
                       value={this.state.file}
-                      // onChange={this.onChangeImage}
+                      onChange={this.onChangeImage}
                       validations={[required]}
                     />
                   </div>

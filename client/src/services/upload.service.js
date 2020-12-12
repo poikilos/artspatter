@@ -5,13 +5,11 @@ require('dotenv').config();
 const API_URL = process.env.API_URL || "http://localhost:5000";
 
 class UploadService {
-  upload(title, description, file) {
-    return axios.post(API_URL + "/api/post/upload", {
-      title,
-      description,
-      file,
-      },
-      { headers: authHeader() }
+  upload(formData) {
+    return axios.post(
+      API_URL + "/api/post/upload",
+      formData,
+      { headers: authHeader() },
     );
   }
 }

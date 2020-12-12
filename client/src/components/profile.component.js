@@ -57,6 +57,10 @@ export default class Profile extends Component {
                 <td className="px-6 py-4 whitespace-nowrap">{currentUser.id}</td>
               </tr>
               <tr>
+                <td className="px-6 py-4 whitespace-nowrap">uid:</td>{" "}
+                <td className="px-6 py-4 whitespace-nowrap">{currentUser.uid}</td>
+              </tr>
+              <tr>
                 <td className="px-6 py-4 whitespace-nowrap">Email:</td>{" "}
                 <td className="px-6 py-4 whitespace-nowrap">{currentUser.email}</td>
               </tr>
