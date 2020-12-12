@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './tailwind.output.css';
@@ -50,26 +50,27 @@ class App extends Component {
     // https://codesandbox.io/s/mq48rlj0pp?file=/src/index.js:329-350
     // formerly used https://tailwindcomponents.com/component/dark-navigation-component
     return (
-      <div className="mt-0 w-full flex flex-row flex-wrap">
+      <React.Fragment>
+        <header>
         <Nav />
-        <div className="w-full bg-indigo-100 h-full sm:p-0 md:p-10 xl:p-24">
-          <div className="sm:w-full md:w-1/2 lg:w-1/2">
-            <div className="bg-white shadow rounded-lg border">
-              <Switch>
-                <Route exact path={["/", "/home"]} component={Home} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/upload" component={Upload} />
-              </Switch>
-            </div>
-          </div>
-        </div>
-      </div>
+        </header>
+        <Switch>
+          <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/upload" component={Upload} />
+        </Switch>
+      </React.Fragment>
 );
   }
 }
+/*
+        <div className="w-full bg-indigo-100 h-full sm:p-0 md:p-10 xl:p-24">
+          <div className="sm:w-full md:w-1/2 lg:w-1/2">
+            <div className="bg-white shadow rounded-lg border">
 
+*/
 // TODO: (future) my gallery:
 // nav:
 /*
