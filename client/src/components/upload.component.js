@@ -79,7 +79,9 @@ export default class Upload extends Component {
    console.log("e.target.file:", e.target.file);
    this.setState({
     //file: e.target.files[0],
-    files: e.target.files,
+    files: e.target.files, // this is the only thing that
+    // prevents crash--or:
+    // TODO:? readystatechange ? 
   });
   /*
     var files = e.target.files;
@@ -111,6 +113,10 @@ export default class Upload extends Component {
       formData.append('title', this.state.title);
       formData.append('description', this.state.title);
       formData.append('file', this.state.files[0]);
+
+      // Array notes and other notes:
+      // <https://medium.com/@mahesh_joshi/reactjs-nodejs-upload-image-how-
+      // to-upload-image-using-reactjs-and-nodejs-multer-918dc66d304c>
       
       UploadService.upload(
         formData,
