@@ -9,7 +9,6 @@ export default class Home extends Component {
 
     this.state = {
       content: "",
-      statusImage: "",
     };
   }
 
@@ -30,12 +29,12 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="container">
-        <img src="{this.state.statusImage}"/>
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
-      </div>
+      <section
+        className="flex p-5 flex-col justify-center text-center"
+        style={{ minWidth: "100vw", minHeight: "100vh" }}
+      >
+        <h3>{this.state.content}</h3>
+      </section>
     );
   }
 }

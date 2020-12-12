@@ -46,7 +46,7 @@ export default class Upload extends Component {
     this.state = {
       title: "",
       description: "",
-      image: null,
+      file: null,
       successful: false,
       message: "",
     };
@@ -78,7 +78,7 @@ export default class Upload extends Component {
       UploadService.upload(
         this.state.title,
         this.state.description,
-        this.state.image,
+        this.state.file,
       ).then(
         response => {
           this.setState({
@@ -98,127 +98,133 @@ export default class Upload extends Component {
 
   render() {
     return (
-      <div className="col-md-12">
-        <div className="card card-container">
-          <Form
-            method="post"
-            enctype="multipart/form-data"
-            onSubmit={this.handleUpload}
-            ref={c => {
-              this.form = c;
-            }}
-          >
-            {!this.state.successful && (
-              <div>
-                <div className="form-group">
-                  <label htmlFor="title">Title</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="title"
-                    value={this.state.title}
-                    onChange={this.onChangeTitle}
-                    validations={[required, vtitle]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="description">Description</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="description"
-                    value={this.state.description}
-                    onChange={this.onChangeDescription}
-                    validations={[required, description]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="image">Image</label>
-                  <Input
-                    type="file"
-                    className="form-control"
-                    name="image"
-                    value={this.state.image}
-                    // onChange={this.onChangeImage}
-                    // validations={[required, vimage]}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <button className="btn btn-primary btn-block">Submit</button>
-                </div>
-              </div>
-            )}
-
-            {this.state.message && (
-              <div
-                className={
-                  this.state.successful
-                  ? "text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"
-                  : "text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
-                }
-                >
-                { this.state.successful
-                  ?
-                  <span className="text-xl inline-block mr-5 align-middle">
-                    <i className="fas fa-check" />
-                  </span>
-                  :
-                  <span className="text-xl inline-block mr-5 align-middle">
-                    <i className="fas fa-bell" />
-                  </span>
-                }
-                <span
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                >
-                  {this.state.message}
-                </span>
-              </div>
-            )}
-            {this.state.debug && (
-              <div
-                className={
-                  this.state.successful
-                  ? "text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"
-                  : "text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
-                }
-                >
-                { this.state.successful
-                  ?
-                  <span className="text-xl inline-block mr-5 align-middle">
-                    <i className="fas fa-check" />
-                  </span>
-                  :
-                  <span className="text-xl inline-block mr-5 align-middle">
-                    <i className="fas fa-bell" />
-                  </span>
-                }
-                <span
-                  className={
-                    this.state.successful
-                      ? "alert alert-success"
-                      : "alert alert-danger"
-                  }
-                >
-                  {this.state.debug}
-                </span>
-              </div>
-            )}
-            <CheckButton
-              style={{ display: "none" }}
+      <section
+        className="flex p-5 flex-col justify-center text-center"
+        style={{ minWidth: "100vw", minHeight: "100vh" }}
+      >
+        <div className="col-md-12">
+          <div className="card card-container">
+            <Form
+              method="post"
+              enctype="multipart/form-data"
+              onSubmit={this.handleUpload}
               ref={c => {
-                this.checkBtn = c;
+                this.form = c;
               }}
-            />
-          </Form>
+            >
+              {!this.state.successful && (
+                <div>
+                  <div className="form-group">
+                    <label htmlFor="title">Title</label>
+                    <Input
+                      type="text"
+                      className="form-control"
+                      name="title"
+                      value={this.state.title}
+                      onChange={this.onChangeTitle}
+                      validations={[required, vtitle]}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="description">Description</label>
+                    <Input
+                      type="text"
+                      className="form-control"
+                      name="description"
+                      value={this.state.description}
+                      onChange={this.onChangeDescription}
+                      validations={[required, description]}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="file">Image</label>
+                    <Input
+                      type="file"
+                      className="form-control"
+                      name="file"
+                      enctype="multipart/form-data"
+                      value={this.state.file}
+                      // onChange={this.onChangeImage}
+                      validations={[required]}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <button className="btn btn-primary btn-block">Submit</button>
+                  </div>
+                </div>
+              )}
+
+              {this.state.message && (
+                <div
+                  className={
+                    this.state.successful
+                    ? "text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"
+                    : "text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
+                  }
+                  >
+                  { this.state.successful
+                    ?
+                    <span className="text-xl inline-block mr-5 align-middle">
+                      <i className="fas fa-check" />
+                    </span>
+                    :
+                    <span className="text-xl inline-block mr-5 align-middle">
+                      <i className="fas fa-bell" />
+                    </span>
+                  }
+                  <span
+                    className={
+                      this.state.successful
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                  >
+                    {this.state.message}
+                  </span>
+                </div>
+              )}
+              {this.state.debug && (
+                <div
+                  className={
+                    this.state.successful
+                    ? "text-white px-6 py-4 border-0 rounded relative mb-4 bg-green-500"
+                    : "text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500"
+                  }
+                  >
+                  { this.state.successful
+                    ?
+                    <span className="text-xl inline-block mr-5 align-middle">
+                      <i className="fas fa-check" />
+                    </span>
+                    :
+                    <span className="text-xl inline-block mr-5 align-middle">
+                      <i className="fas fa-bell" />
+                    </span>
+                  }
+                  <span
+                    className={
+                      this.state.successful
+                        ? "alert alert-success"
+                        : "alert alert-danger"
+                    }
+                  >
+                    {this.state.debug}
+                  </span>
+                </div>
+              )}
+              <CheckButton
+                style={{ display: "none" }}
+                ref={c => {
+                  this.checkBtn = c;
+                }}
+              />
+            </Form>
+          </div>
         </div>
-      </div>
+      </section>
     );
   }
 }

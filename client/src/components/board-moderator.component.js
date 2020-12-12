@@ -29,11 +29,12 @@ export default class BoardModerator extends Component {
 
   render() {
     return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
-      </div>
+      <section
+        className="flex p-5 flex-col justify-center text-center"
+        style={{ minWidth: "100vw", minHeight: "100vh" }}
+      >
+        <h3>{this.state.content}</h3>
+      </section>
     );
   }
 }

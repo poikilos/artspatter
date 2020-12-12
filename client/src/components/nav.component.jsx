@@ -27,6 +27,10 @@ class Nav extends Component {
     this.setState({ currentUser: currentUser, userReady: (currentUser ? true : false) });
   }
 
+  logOut() {
+    AuthService.logout();
+  }
+  
   render() {
     const { currentUser } = this.state;
     return(
@@ -58,17 +62,18 @@ class Nav extends Component {
               </li>
               <li>
                 <Link
-                    href="/upload"
+                    to="/upload"
                     className="block px-0 py-3 border-b-2 border-transparent lg:p-4 hover:border-indigo-400"
-                    onClick={this.logOut}>
+                    >
                     Upload
                 </Link>
               </li>
               <li>
                 <Link
-                    href="/login"
+                    to="/login"
                     className="block px-0 py-3 border-b-2 border-transparent lg:p-4 hover:border-indigo-400"
-                    onClick={this.logOut}>
+                    onClick={this.logOut}
+                    >
                     LogOut
                 </Link>
               </li>
