@@ -49,6 +49,7 @@ export default class Upload extends Component {
       title: "",
       description: "",
       file: null,
+      files: [],
       successful: false,
       message: "",
     };
@@ -67,9 +68,33 @@ export default class Upload extends Component {
   }
 
   onChangeImage(e) {
+    /*
+    console.log("e.target.files:", e.target.files);
     this.setState({
-      file: e.target.value,
+      file: e.target.files[0],
     });
+    // Uncaught DOMException: An attempt was made to use an object that is not, or is no longer, usable
+    */
+   console.log("e.target.files:", e.target.files);
+   console.log("e.target.file:", e.target.file);
+   this.setState({
+    //file: e.target.files[0],
+    files: e.target.files,
+  });
+  /*
+    var files = e.target.files;
+    console.log(files);
+    var filesArr = Array.prototype.slice.call(files);
+    console.log(filesArr);
+    this.setState({ files: [...this.state.files, ...filesArr] });
+    // ^ See https://codesandbox.io/s/xnxmzxbe?file=/index.js:528-589
+    // this.setState({file: files[0]});
+
+    */
+  }
+
+  removeFile(f) {
+    this.setState({ files: this.state.files.filter(x => x !== f) }); 
   }
 
   handleUpload(e) {
@@ -85,7 +110,7 @@ export default class Upload extends Component {
       const formData = new FormData();
       formData.append('title', this.state.title);
       formData.append('description', this.state.title);
-      formData.append('file', this.state.file);
+      formData.append('file', this.state.files[0]);
       
       UploadService.upload(
         formData,
@@ -95,6 +120,9 @@ export default class Upload extends Component {
             message: reporting.responseLeaf(response),
             successful: true,
           });
+          // document.getElementById('file').value = null;
+          // ^ TODO:? Prevent reuse causing bug, see 
+          //   https://github.com/redux-form/redux-form/issues/769
         },
         error => {
           this.setState({
@@ -116,7 +144,7 @@ export default class Upload extends Component {
           <div className="card card-container">
             <Form
               method="post"
-              enctype="multipart/form-data"
+              encType="multipart/form-data"
               onSubmit={this.handleUpload}
               ref={c => {
                 this.form = c;
@@ -152,12 +180,13 @@ export default class Upload extends Component {
                     <label htmlFor="file">Image</label>
                     <Input
                       type="file"
+                      id="file"
                       className="form-control"
                       name="file"
-                      enctype="multipart/form-data"
                       value={this.state.file}
                       onChange={this.onChangeImage}
-                      validations={[required]}
+                      validations={[required]} //
+                      ref={ref => this.fileInput = ref}
                     />
                   </div>
 

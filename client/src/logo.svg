@@ -14,9 +14,9 @@
    id="svg8"
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="logo.svg"
-   inkscape:export-filename="C:\Users\Jatlivecom\projects\ArtSpatter-workspace\artspatter\client\public\logo512.png"
-   inkscape:export-xdpi="1552.5391"
-   inkscape:export-ydpi="1552.5391">
+   inkscape:export-filename="C:\Users\Jatlivecom\projects\ArtSpatter-workspace\artspatter\public\assets\logo32.png"
+   inkscape:export-xdpi="97.025772"
+   inkscape:export-ydpi="97.025772">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -27,7 +27,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="11.2"
-     inkscape:cx="16.875003"
+     inkscape:cx="1.6517887"
      inkscape:cy="15.28642"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
