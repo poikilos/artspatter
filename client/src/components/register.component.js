@@ -4,6 +4,9 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
 import AuthService from "../services/auth.service";
 const reporting = require("../reporting");
 
@@ -125,7 +128,7 @@ export default class Register extends Component {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-        <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+        <FontAwesomeIcon icon={faUserCircle} />
 
           <Form
             onSubmit={this.handleRegister}

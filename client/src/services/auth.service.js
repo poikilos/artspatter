@@ -1,12 +1,12 @@
 import axios from "axios";
 require('dotenv').config();
 
-const API_URL = process.env.API_URL || "http://localhost:5000/api";
+const API_URL = process.env.API_URL || "http://localhost:5000";
 
 class AuthService {
   login(username, password) {
     return axios
-      .post(API_URL + "/auth/signin", {
+      .post(API_URL + "/api/auth/signin", {
         username,
         password
       })
@@ -24,7 +24,7 @@ class AuthService {
   }
 
   register(username, email, password) {
-    return axios.post(API_URL + "/auth/signup", {
+    return axios.post(API_URL + "/api/auth/signup", {
       username,
       email,
       password

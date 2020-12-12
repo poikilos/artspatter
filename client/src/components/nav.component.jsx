@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import '../tailwind.output.css';
 import '../App.css';
+import '../navjs';
+import navjs from "../navjs";
+require('dotenv').config();
+const API_URL = process.env.API_URL || "http://localhost:5000";
+
 // import styled from "styled-components";
 // ^ See https://codesandbox.io/s/mq48rlj0pp?file=/src/components/Nav.js:4599-4618
 /*
@@ -14,10 +19,44 @@ import BoardUser from "./board-user.component";
 import BoardModerator from "./board-moderator.component";
 import BoardAdmin from "./board-admin.component";
 */
-
+// See https://create-react-app.dev/docs/adding-images-fonts-and-files/
 
 class Nav extends Component {
-  
+  componentDidMount () {
+    /*
+    const script = document.createElement("script");
+    script.src = "../nav.js";
+    console.log(`added ${script.src}`);
+    script.async = true;
+    document.body.appendChild(script);
+    */
+    navjs();
+  }
+/*
+  componentDidMount() {
+    
+    return(
+      <script type="text/javascript">
+          document.querySelectorAll("#nav").on("click", function(e) {
+            e.preventDefault();
+            if(document.querySelectorAll("#nav-items").hasClass("close")) {
+              document.querySelectorAll("#nav-items").removeClass("close").addClass("open");
+                
+              document.querySelectorAll("#nav-items").removeClass("rotate-360-backwards fa-bars text-gray-600").addClass("rotate-360 fa-close text-white float-right");
+              document.querySelectorAll("#nav").removeClass("rotate-360-backwards fa-bars text-gray-600").addClass("rotate-360 fa-close text-white float-right");
+              // ^ formerly "#nav>i"
+            } else {
+              document.querySelectorAll("#nav-items").removeClass("open").addClass("close");
+
+              document.querySelectorAll("#nav").addClass("rotate-360-backwards fa-bars text-gray-600").removeClass("rotate-360 fa-close text-white float-right");
+              document.querySelectorAll("#nav-items").addClass("rotate-360-backwards fa-bars text-gray-600").removeClass("rotate-360 fa-close text-white float-right");
+              // ^ formerly "#nav>i"
+            }
+          });
+        </script>
+    );
+  }
+  */
   constructor(props) {
     super(props);
     this.state = {
@@ -41,7 +80,7 @@ class Nav extends Component {
         */
       <div className="p-3 m-0 w-full flex flex-row flex-wrap bg-white shadow">
         <Link to={"/"} className="w-1/5 flex flex-row flex-wrap justify-center content-center">
-          <img ald="ArtSpatter logo" className="h-10" src="public/artspatter.png"/>ArtSpatter
+          <img alt="ArtSpatter logo" className="h-10" src={`${API_URL}/assets/logo32.png`}/>ArtSpatter
         </Link>
         <div className="sm:flex md:hidden z-50 w-4/5 flex flex-row flex-wrap justify-end content-center h-10">
           <button id="nav" className="text-gray-600 font-semibold px-1 text-2xl p-1 px-2 rounded bg-gray-20" type="button"><i className="transition-rotate fa fa-bars"></i></button>

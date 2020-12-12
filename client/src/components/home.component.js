@@ -8,7 +8,8 @@ export default class Home extends Component {
     super(props);
 
     this.state = {
-      content: ""
+      content: "",
+      statusImage: "",
     };
   }
 
@@ -30,6 +31,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
+        <img src="{this.state.statusImage}"/>
         <header className="jumbotron">
           <h3>{this.state.content}</h3>
         </header>

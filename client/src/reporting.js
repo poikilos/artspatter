@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const API_URL = process.env.API_URL || "http://localhost:5000/api";
+const API_URL = process.env.API_URL || "http://localhost:5000";
 
 exports.errorLeaf = (error) => {
   // Sometimes error.response.data.message is an error, and returning it

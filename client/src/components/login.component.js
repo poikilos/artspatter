@@ -73,16 +73,19 @@ export default class Login extends Component {
       });
     }
   }
+  /*
+<img
+            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+            alt="profile-img"
+            className="profile-img-card"
+          />
+  */
 
   render() {
     return (
       <div className="col-md-12">
         <div className="card card-container">
-          <img
-            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-            alt="profile-img"
-            className="profile-img-card"
-          />
+        <i className="fa fa-user-circle-o" aria-hidden="true"></i>
 
           <Form
             onSubmit={this.handleLogin}

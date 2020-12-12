@@ -1,28 +1,37 @@
 import React, { Component } from "react";
 // import { render } from  "react-dom";
 import '../tailwind.output.css';
-import '../App.css';
-import $ from "jquery";
+// import '../App.css';
+// import $ from "jquery";
 
 class NavScript extends Component {
   // See https://tailwindcomponents.com/component/webpage-example-with-pure-tailwind-responsive-nav
-  render() {
-
+  // Convert from jQuery to vanilla JavaScript: https://dev.to/webdeasy/from-jquery-to-javascript-how-to-make-the-move-4ohi
+  // See nav.js
+/*
+  componentDidMount() {
     return(
       <script type="text/javascript">
-          $("#nav").on("click", function(e) {
+          document.querySelectorAll("#nav").on("click", function(e) {
             e.preventDefault();
-            if($("#nav-items").hasClass("close")) {
-              $("#nav-items").removeClass("close").addClass("open");
-              $("#nav>i").removeClass("rotate-360-backwards fa-bars text-gray-600").addClass("rotate-360 fa-close text-white float-right");
+            if(document.querySelectorAll("#nav-items").hasClass("close")) {
+              document.querySelectorAll("#nav-items").removeClass("close").addClass("open");
+                
+              document.querySelectorAll("#nav-items").removeClass("rotate-360-backwards fa-bars text-gray-600").addClass("rotate-360 fa-close text-white float-right");
+              document.querySelectorAll("#nav").removeClass("rotate-360-backwards fa-bars text-gray-600").addClass("rotate-360 fa-close text-white float-right");
+              // ^ formerly "#nav>i"
             } else {
-              $("#nav-items").removeClass("open").addClass("close");
-              $("#nav>i").addClass("rotate-360-backwards fa-bars text-gray-600").removeClass("rotate-360 fa-close text-white float-right");
+              document.querySelectorAll("#nav-items").removeClass("open").addClass("close");
+
+              document.querySelectorAll("#nav").addClass("rotate-360-backwards fa-bars text-gray-600").removeClass("rotate-360 fa-close text-white float-right");
+              document.querySelectorAll("#nav-items").addClass("rotate-360-backwards fa-bars text-gray-600").removeClass("rotate-360 fa-close text-white float-right");
+              // ^ formerly "#nav>i"
             }
           });
         </script>
     );
   }
+*/
 }
 
 export default NavScript;
