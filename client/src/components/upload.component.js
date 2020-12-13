@@ -80,7 +80,9 @@ export default class Upload extends Component {
    this.setState({
     //file: e.target.files[0],
     files: e.target.files, // this is the only thing that
-    // prevents crash--or:
+    // prevents crash (?):
+    // InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+    // --or:
     // TODO:? readystatechange ? 
   });
   /*
