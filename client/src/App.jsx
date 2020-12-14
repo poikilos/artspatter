@@ -11,9 +11,9 @@ import Register from "./components/register.component";
 import Upload from "./components/upload.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
-// import BoardUser from "./components/board-user.component";
-// import BoardModerator from "./components/board-moderator.component";
-// import BoardAdmin from "./components/board-admin.component";
+// import UserPanel from "./components/userPanel.component";
+// import ModeratorPanel from "./components/moderatorPanel.component";
+// import AdminPanel from "./components/adminPanel.component";
 import Nav from './components/nav.component';
 
 class App extends Component {

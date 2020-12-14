@@ -29,6 +29,11 @@ class Nav extends Component {
 
   logOut() {
     AuthService.logout();
+    this.setState({
+      redirect: null,
+      userReady: false,
+      currentUser: { username: "" }
+    });
   }
   
   render() {
