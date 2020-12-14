@@ -28,12 +28,15 @@ class Nav extends Component {
   }
 
   logOut() {
-    AuthService.logout();
-    this.setState({
+    // TODO:
+    /*
+    this.setState({ // TypeError: this is undefined
       redirect: null,
       userReady: false,
       currentUser: { username: "" }
     });
+    */
+    AuthService.logout();
   }
   
   render() {
