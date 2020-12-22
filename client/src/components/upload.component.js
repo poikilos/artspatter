@@ -113,7 +113,7 @@ export default class Upload extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       const formData = new FormData();
       formData.append('title', this.state.title);
-      formData.append('description', this.state.title);
+      formData.append('description', this.state.description);
       formData.append('file', this.state.files[0]);
 
       // Array notes and other notes:

@@ -5,6 +5,7 @@ import '../tailwind.output.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { faBan } from '@fortawesome/free-solid-svg-icons'
+import ImageCard from './imagecard.component.js';
 
 const InfiniteScroll = require('react-infinite-scroll-component');
 const reporting = require("../reporting");
@@ -27,6 +28,14 @@ export default class Home extends Component {
       pageNumber: 0,
       items: [],
       advance: 1,
+      dummyPost: {
+        pid: null,
+        uid: null,
+        title: "(untitled)",
+        body: "",
+        c: null,
+        likes: 0,
+      },
       testItems: [
         {
           pid: "a",
@@ -139,22 +148,13 @@ export default class Home extends Component {
         style={{ minWidth: "100vw", minHeight: "100vh" }}
       >
       {this.state.items.map(post => (
-        post
-        ?
-        ( 
-          post.thumb
+        (
+          post
           ?
-          (
-            post.thumb.startsWith("/")
-            ?
-            <img src={API_URL + post.thumb} key={post.pid} alt={post.title} width="128" height="128"/>
-            :
-            <img src={post.thumb} key={post.pid} alt={post.title} width="128" height="128"/>
-          )
-          : <FontAwesomeIcon icon={faBan} />
+          <ImageCard post={post}/>
+          :
+          <ImageCard post={this.state.dummyPost}/>
         )
-        :
-        <span>The server is unavailable.</span>
       ))}
     </section>
     );

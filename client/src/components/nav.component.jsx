@@ -28,7 +28,7 @@ class Nav extends Component {
   }
 
   logOut() {
-    // TODO:
+    // TODO: user's name still appears in nav after logout
     /*
     this.setState({ // TypeError: this is undefined
       redirect: null,
