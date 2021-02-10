@@ -10,6 +10,8 @@ Server API (See ../server.js).
 
 This code is based on the create-react-app service-worker template.
 
+This is a React.js client. For the (server) API, see `../readme.md`.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
